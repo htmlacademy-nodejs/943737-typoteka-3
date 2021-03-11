@@ -25,6 +25,7 @@ module.exports.writeJsonFile = (content, fileName) => {
     console.info(`Operation success. File created.`);
   } catch (error) {
     console.error(`Can't write data to file...`);
+    throw error;
   }
 };
 
@@ -41,7 +42,7 @@ module.exports.getDateFormattedString = (date) => {
 };
 
 module.exports.getRandomDateWithBackShiftByMonth = (monthShiftCount) => {
-  const timeToday = new Date().getTime();
+  const timeToday = Date.now();
   const timeShift = 24 * 3600000 * 30 * monthShiftCount;
   const timeDiff = timeToday - timeShift;
   const randomTime = exports.getRandomInt(timeDiff, timeToday);
