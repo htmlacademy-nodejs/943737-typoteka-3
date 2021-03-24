@@ -18,6 +18,7 @@ const {
   MONTH_SHIFT_COUNT,
 } = require(`./generate.constants`);
 const {ExitCode} = require(`../../constants`);
+const chalk = require(`chalk`);
 
 const getRandomDateFormatedString = () => {
   const randomDate = getRandomDateWithBackShiftByMonth(MONTH_SHIFT_COUNT);
@@ -38,18 +39,18 @@ const generateOffers = (count) => (
 
 module.exports = {
   name: `--generate`,
-  run(args) {
+  async run(args) {
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
 
     if (countOffer > MAX_COUNT_OFFER) {
-      console.error(`Не больше ${MAX_COUNT_OFFER} публикаций`);
+      console.error(chalk.red(`Не больше ${MAX_COUNT_OFFER} публикаций`));
       process.exit(ExitCode.ERROR);
     }
 
     const content = generateOffers(countOffer);
 
-    writeJsonFile(content, DEFAULT_FILE_NAME);
+    await writeJsonFile(content, DEFAULT_FILE_NAME);
   }
 };
 
