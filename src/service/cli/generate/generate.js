@@ -7,11 +7,12 @@ const {
   getRandomItemFromArray,
   getDateFormattedString,
   getRandomDateWithBackShiftByMonth,
+  readContent
 } = require(`../../utils`);
 const {
-  CATEGORIES,
-  ANNOUNCEMENTS,
-  TITLES,
+  FILE_CATEGORIES_PATH,
+  FILE_ANNOUNCEMENTS_PATH,
+  FILE_TITLES_PATH,
   DEFAULT_COUNT,
   MAX_COUNT_OFFER,
   DEFAULT_FILE_NAME,
@@ -27,19 +28,23 @@ const getRandomDateFormatedString = () => {
   return randomDateFormattedString;
 };
 
-const generateOffers = (count) => (
-  Array(count).fill({}).map(() => ({
-    category: shuffle(CATEGORIES).slice(1, getRandomInt(2, CATEGORIES.length)),
+const generateOffers = (count, announcements, categories, titles) => (
+  new Array(count).fill({}).map(() => ({
+    category: shuffle(categories).slice(1, getRandomInt(2, categories.length)),
     createdDate: getRandomDateFormatedString(),
-    announce: shuffle(ANNOUNCEMENTS).slice(1, 6).join(` `),
-    fullText: shuffle(ANNOUNCEMENTS).slice(1, getRandomInt(2, ANNOUNCEMENTS.length)).join(` `),
-    title: getRandomItemFromArray(TITLES),
+    announce: shuffle(announcements).slice(1, 6).join(` `),
+    fullText: shuffle(announcements).slice(1, getRandomInt(2, announcements.length)).join(` `),
+    title: getRandomItemFromArray(titles),
   }))
 );
 
 module.exports = {
   name: `--generate`,
   async run(args) {
+    const annoucements = await readContent(FILE_ANNOUNCEMENTS_PATH);
+    const titles = await readContent(FILE_TITLES_PATH);
+    const categories = await readContent(FILE_CATEGORIES_PATH);
+
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
 
@@ -48,7 +53,7 @@ module.exports = {
       process.exit(ExitCode.ERROR);
     }
 
-    const content = generateOffers(countOffer);
+    const content = generateOffers(countOffer, annoucements, categories, titles);
 
     await writeJsonFile(content, DEFAULT_FILE_NAME);
   }

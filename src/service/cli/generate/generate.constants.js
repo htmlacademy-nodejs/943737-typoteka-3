@@ -1,49 +1,26 @@
 'use strict';
 
-module.exports.DEFAULT_COUNT = 1;
+const DEFAULT_COUNT = 10;
 
-module.exports.MONTH_SHIFT_COUNT = 3;
+const MONTH_SHIFT_COUNT = 3;
 
-module.exports.MAX_COUNT_OFFER = 1000;
+const MAX_COUNT_OFFER = 1000;
 
-module.exports.DEFAULT_FILE_NAME = `mocks.json`;
+const DEFAULT_FILE_NAME = `mocks.json`;
 
-module.exports.TITLES = [
-  `Ёлки. История деревьев`,
-  `Как перестать беспокоиться и начать жить`,
-  `Как достигнуть успеха не вставая с кресла`,
-  `Обзор новейшего смартфона`,
-  `Лучшие рок-музыканты 20-века`,
-  `Как начать программировать`,
-  `Учим HTML и CSS`,
-  `Что такое золотое сечение`,
-  `Как собрать камни бесконечности`,
-  `Борьба с прокрастинацией`,
-  `Рок — это протест`,
-  `Самый лучший музыкальный альбом этого года`,
-];
+const FILE_TITLES_PATH = `./data/titles.txt`;
 
-module.exports.ANNOUNCEMENTS = [
-  `Товар в отличном состоянии.`,
-  `Пользовались бережно и только по большим праздникам.`,
-  `Продаю с болью в сердце...`,
-  `Бонусом отдам все аксессуары.`,
-  `Даю недельную гарантию.`,
-  `Если товар не понравится — верну всё до последней копейки.`,
-  `Это настоящая находка для коллекционера!`,
-  `Если найдёте дешевле — сброшу цену.`,
-  `Таких предложений больше нет!`,
-  `При покупке с меня бесплатная доставка в черте города.`,
-];
+const FILE_ANNOUNCEMENTS_PATH = `./data/announcements.txt`;
 
-module.exports.CATEGORIES = [
-  `Деревья`,
-  `За жизнь`,
-  `Без рамки`,
-  `Разное`,
-  `IT`,
-  `Музыка`,
-  `Кино`,
-  `Программирование`,
-  `Железо`,
-];
+const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+
+
+module.exports = {
+  DEFAULT_COUNT,
+  MONTH_SHIFT_COUNT,
+  MAX_COUNT_OFFER,
+  DEFAULT_FILE_NAME,
+  FILE_ANNOUNCEMENTS_PATH,
+  FILE_TITLES_PATH,
+  FILE_CATEGORIES_PATH
+};
