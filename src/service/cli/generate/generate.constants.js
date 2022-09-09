@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const DEFAULT_COUNT = 10;
 
@@ -14,6 +14,11 @@ const FILE_ANNOUNCEMENTS_PATH = `./data/announcements.txt`;
 
 const FILE_CATEGORIES_PATH = `./data/categories.txt`;
 
+const FILE_COMMENTS_PATH = `./data/comments.txt`;
+
+const MAX_ID_LENGTH = 6;
+
+const MAX_COMMENTS = 4;
 
 module.exports = {
   DEFAULT_COUNT,
@@ -22,5 +27,8 @@ module.exports = {
   DEFAULT_FILE_NAME,
   FILE_ANNOUNCEMENTS_PATH,
   FILE_TITLES_PATH,
-  FILE_CATEGORIES_PATH
+  FILE_CATEGORIES_PATH,
+  FILE_COMMENTS_PATH,
+  MAX_ID_LENGTH,
+  MAX_COMMENTS,
 };
