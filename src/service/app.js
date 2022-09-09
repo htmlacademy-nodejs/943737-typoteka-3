@@ -1,17 +1,16 @@
-'use strict';
+"use strict";
 
 const express = require(`express`);
-const {HttpCode} = require(`./constants`);
-const routes = require(`./routes/routes`);
+const { HttpCode, API_PREFIX } = require(`./constants`);
+
 const app = express();
+const routes = require(`./api/index`);
 
 app.use(express.json());
-app.use(routes);
+app.use(API_PREFIX, routes);
 
 app.use((req, res) => {
-  res
-    .status(HttpCode.NOT_FOUND)
-    .send(`Not found`);
+  res.status(HttpCode.NOT_FOUND).send(`Not found`);
 });
 
 module.exports = app;
