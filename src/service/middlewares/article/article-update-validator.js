@@ -13,7 +13,7 @@ const articleKeys = [
 const articleUpdateValidator = (req, res, next) => {
   const newArticle = req.body;
   const keys = Object.keys(newArticle);
-  const keysExists = articleKeys.some((key) => keys.includes(key));
+  const keysExists = keys.every((key) => articleKeys.includes(key));
 
   if (!keysExists) {
     return res.status(HttpCode.BAD_REQUEST).send(`Bad request`);

@@ -30,7 +30,7 @@ const articleController = (app, service) => {
   route.post(`/`, articleCreateValidator, async (req, res) => {
     const article = await service.create(req.body);
 
-    res.status(HttpCode.OK).json(article);
+    res.status(HttpCode.CREATED).json(article);
   });
 
   route.put(
@@ -80,7 +80,7 @@ const articleController = (app, service) => {
 
       comments.push(comment);
 
-      res.status(HttpCode.OK).json(comment);
+      res.status(HttpCode.CREATED).json(comment);
     }
   );
 
