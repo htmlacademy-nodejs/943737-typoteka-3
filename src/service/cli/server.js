@@ -1,10 +1,10 @@
+"use strict";
 
-'use strict';
-
-const chalk = require(`chalk`);
 const app = require(`../app`);
+const { getLogger } = require(`./../lib/logger`);
 
 const DEFAULT_PORT = 3000;
+const logger = getLogger();
 
 module.exports = {
   name: `--server`,
@@ -15,10 +15,10 @@ module.exports = {
     app
       .listen(port)
       .on(`listening`, () => {
-        console.info(chalk.green(`Ожидаю соединений на ${port}`));
+        logger.info(`Ожидаю соединений на ${port}`);
       })
-      .on(`error`, ({message}) => {
-        console.error(`Ошибка при создании сервера: ${message}`);
+      .on(`error`, ({ message }) => {
+        logger.error(`Ошибка при создании сервера: ${message}`);
       });
-  }
+  },
 };

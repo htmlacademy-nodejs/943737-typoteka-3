@@ -16,6 +16,7 @@ const HttpCode = {
   FORBIDDEN: 403,
   UNAUTHORIZED: 401,
   BAD_REQUEST: 400,
+  CREATED: 201,
 };
 
 const API_PREFIX = `/api`;
